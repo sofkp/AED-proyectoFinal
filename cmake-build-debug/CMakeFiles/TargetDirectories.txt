@@ -1,0 +1,3 @@
+C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/AED_proyectoFinal.dir
+C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/rebuild_cache.dir
