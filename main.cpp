@@ -22,13 +22,18 @@ private:
 
     // left rotation LL
     void rotateLeft(Node*& node){
+        if(node == nullptr || node->right == nullptr){
+            return;
+        }
         Node* child = node->right;
         node->right = child->left;
         if (node->right != nullptr) {
             node->right->parent = node;
         }
         child->parent = node->parent;
-        if (node->parent == nullptr) root = child;
+        if (node->parent == nullptr) {
+            root = child;
+        }
         else if (node == node->parent->left) {
             node->parent->left = child;
         }
@@ -362,21 +367,23 @@ int main()
     rbtree.printTree();
     cout<<"____________________________-"<<endl;
 
-
-    cout << "After deleting 2:" << endl;
-    rbtree.remove(2);
+    cout << "After deleting 6:" << endl;
+    rbtree.remove(6);
     rbtree.printTree();
     cout<<"____________________________-"<<endl;
 
-    cout << "After deleting 11:" << endl;
-    rbtree.remove(11);
-    rbtree.printTree();
-    cout<<"____________________________-"<<endl;
-
-    cout << "After deleting 19:" << endl;
-    rbtree.remove(19);
+    cout << "After deleting 35:" << endl;
+    rbtree.remove(10);
     rbtree.printTree();
     cout<<"____________________________-"<<endl;
 
     return 0;
 }
+
+
+/*
+cout << "After deleting 19:" << endl;
+rbtree.remove(19);
+rbtree.printTree();
+cout<<"____________________________-"<<endl;
+*/
