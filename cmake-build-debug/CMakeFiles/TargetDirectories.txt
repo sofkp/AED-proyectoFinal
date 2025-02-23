@@ -1,3 +1,6 @@
 C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/AED_proyectoFinal.dir
+C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/a.dir
+C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/b.dir
+C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/c.dir
 C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/sofia/Desktop/Documentos/2025/aed/AED-proyectoFinal/cmake-build-debug/CMakeFiles/rebuild_cache.dir
