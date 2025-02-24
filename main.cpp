@@ -7,78 +7,100 @@
 
 using json = nlohmann::json;
 
-// representacion json del patricia
-json obtenerArbol(const patriciaTree& tree){
+// Representación JSON del árbol rojo-negro
+json obtenerArbol(const RBTree& tree) {
     json jtree;
 
-    function<void(const patriciaNode*, json&)> recorrer = [&](const patriciaNode* nodo, json& jnodo){
-        jnodo["key"]=nodo->key;
-        jnodo["isEndWord"] = nodo->isEndWord;
+    function<void(const Node*, json&)> recorrer = [&](const Node* nodo, json& jnodo) {
+        if (!nodo || nodo == tree.getNullNode()) return; // Verificar si el nodo es nulo o un nodo centinela
 
-        for(const auto& hijo : nodo->hijosNodo){
-            json jHijo;
-            recorrer(hijo.second.get(), jHijo);
-            jnodo["children"].push_back(jHijo);
-        }
+        jnodo["key"] = nodo->key;
+        jnodo["color"] = (nodo->color == RED) ? "red" : "black"; // Suponiendo que RBTree usa colores RED y BLACK
+
+        json left, right;
+        recorrer(nodo->left, left);
+        recorrer(nodo->right, right);
+
+        if (!left.is_null()) jnodo["left"] = left;
+        if (!right.is_null()) jnodo["right"] = right;
     };
+
     json raiz;
     recorrer(tree.getRoot(), raiz);
-    jtree = raiz;
+    jtree["root"] = raiz;
     return jtree;
 }
 
-string read_file(const string& path){
-    ifstream file(path);
-    if(!file.is_open()) throw runtime_error("No se pudo abrir el archivo "+ path);
-    stringstream buff;
+// Leer archivos
+std::string read_file(const std::string& path) {
+    std::ifstream file(path);
+    if (!file.is_open()) throw std::runtime_error("No se pudo abrir el archivo " + path);
+    std::stringstream buff;
     buff << file.rdbuf();
     return buff.str();
 }
 
 int main() {
-    patriciaTree tree;
+    RBTree tree; // Instancia del árbol rojo-negro
 
     httplib::Server svr;
 
-    svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
+    // Servir la página HTML
+    svr.Get("/", [](const httplib::Request&, httplib::Response& res) {
         try {
-            string html = read_file("../web/web.html");
+            std::string html = read_file("../web/web.html");
             res.set_content(html, "text/html");
         } catch (const std::exception& e) {
             res.status = 500;
-            res.set_content("Error al cargar la página: " + string(e.what()), "text/plain");
+            res.set_content("Error al cargar la página: " + std::string(e.what()), "text/plain");
         }
     });
 
-    // insertar palabras
+    // Insertar número en el árbol
     svr.Post("/insert", [&](const httplib::Request& req, httplib::Response& res) {
-        string palabra = req.get_param_value("word");
-        tree.insert(palabra);
-        res.set_content("Palabra insertada: " + palabra, "text/plain");
+        if (req.has_param("number")) {
+            int num = std::stoi(req.get_param_value("number"));
+            tree.insert(num);
+            res.set_content("Número insertado: " + std::to_string(num), "text/plain");
+        } else {
+            res.status = 400;
+            res.set_content("Parámetro 'number' faltante", "text/plain");
+        }
     });
 
-    // buscar palabras
+    // Buscar número en el árbol
     svr.Get("/search", [&](const httplib::Request& req, httplib::Response& res) {
-        string palabra = req.get_param_value("word");
-        bool encontrada = tree.buscar(palabra);
-        json resultado = {{"word", palabra}, {"found", encontrada}};
-        res.set_content(resultado.dump(), "application/json");
+        if (req.has_param("number")) {
+            int num = std::stoi(req.get_param_value("number"));
+            bool encontrado = tree.search(num);
+            json resultado = {{"number", num}, {"found", encontrado}};
+            res.set_content(resultado.dump(), "application/json");
+        } else {
+            res.status = 400;
+            res.set_content("Parámetro 'number' faltante", "text/plain");
+        }
     });
 
-    // eliminar palabras
+    // Eliminar número del árbol
     svr.Delete("/delete", [&](const httplib::Request& req, httplib::Response& res) {
-        string palabra = req.get_param_value("word");
-        bool eliminada = tree.eliminar(palabra);
-        json resultado = {{"word", palabra}, {"deleted", eliminada}};
-        res.set_content(resultado.dump(), "application/json");
+        if (req.has_param("number")) {
+            int num = std::stoi(req.get_param_value("number"));
+            bool eliminado = tree.remove(num);
+            json resultado = {{"number", num}, {"deleted", eliminado}};
+            res.set_content(resultado.dump(), "application/json");
+        } else {
+            res.status = 400;
+            res.set_content("Parámetro 'number' faltante", "text/plain");
+        }
     });
 
-    // rep de aarbol
-    svr.Get("/tree", [&](const httplib::Request& req, httplib::Response& res) {
+    // Representación del árbol
+    svr.Get("/tree", [&](const httplib::Request&, httplib::Response& res) {
         json arbol = obtenerArbol(tree);
         res.set_content(arbol.dump(), "application/json");
     });
 
+    // Iniciar el servidor en localhost:8080
     svr.listen("localhost", 8080);
     return 0;
 }
