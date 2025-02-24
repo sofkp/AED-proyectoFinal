@@ -97,12 +97,12 @@ external/cpp-httplib/clean:
 CMakeFiles/c.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\c.dir\build.make CMakeFiles/c.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\c.dir\build.make CMakeFiles/c.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target c"
 .PHONY : CMakeFiles/c.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/c.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/c.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/c.dir/rule

@@ -146,7 +146,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/main.cpp">
+			<Option target="c"/>
+		</Unit>
 		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/prueba3.cpp">
+			<Option target="c"/>
+		</Unit>
+		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/prueba3.h">
 			<Option target="c"/>
 		</Unit>
 		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/CMakeLists.txt">

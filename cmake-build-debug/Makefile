@@ -193,6 +193,30 @@ c/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\c.dir\build.make CMakeFiles/c.dir/build
 .PHONY : c/fast
 
+main.obj: main.cpp.obj
+.PHONY : main.obj
+
+# target to build an object file
+main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\c.dir\build.make CMakeFiles/c.dir/main.cpp.obj
+.PHONY : main.cpp.obj
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\c.dir\build.make CMakeFiles/c.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\c.dir\build.make CMakeFiles/c.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 prueba3.obj: prueba3.cpp.obj
 .PHONY : prueba3.obj
 
@@ -232,6 +256,9 @@ help:
 	@echo ... package_source
 	@echo ... rebuild_cache
 	@echo ... c
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 	@echo ... prueba3.obj
 	@echo ... prueba3.i
 	@echo ... prueba3.s
