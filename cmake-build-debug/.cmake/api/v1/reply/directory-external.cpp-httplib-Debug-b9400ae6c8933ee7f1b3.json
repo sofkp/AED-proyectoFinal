@@ -1,0 +1,117 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"external/cpp-httplib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 279,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 281,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 291,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 300,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 301,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"external/cpp-httplib/httplib.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/httplib",
+			"paths" : 
+			[
+				"cmake-build-debug/external/cpp-httplib/httplibConfig.cmake",
+				"cmake-build-debug/external/cpp-httplib/httplibConfigVersion.cmake",
+				"external/cpp-httplib/cmake/FindBrotli.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/httplib",
+			"exportName" : "httplibTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "httplib::@ace7b1b196ac6ae1ff7f",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"external/cpp-httplib/CMakeFiles/Export/0c9c21465635b294edae171b02b1b3b9/httplibTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "share/doc/httplib",
+			"paths" : 
+			[
+				"external/cpp-httplib/README.md"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "share/licenses/httplib",
+			"paths" : 
+			[
+				"external/cpp-httplib/LICENSE"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "external/cpp-httplib",
+		"source" : "external/cpp-httplib"
+	}
+}

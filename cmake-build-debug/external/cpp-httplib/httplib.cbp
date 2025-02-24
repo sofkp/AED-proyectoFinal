@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="httplib"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\external\;CMake Files\external\cpp-httplib\;CMake Files\external\cpp-httplib\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug/external/cpp-httplib"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug/external/cpp-httplib/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug/external/cpp-httplib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug/external/cpp-httplib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug/external/cpp-httplib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/external/cpp-httplib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\cpp-httplib\"/>
+		</Unit>
+		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/external/cpp-httplib/cmake/FindBrotli.cmake">
+			<Option virtualFolder="CMake Files\external\cpp-httplib\cmake\"/>
+		</Unit>
+		<Unit filename="D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/external/cpp-httplib/cmake/httplibConfig.cmake.in">
+			<Option virtualFolder="CMake Files\external\cpp-httplib\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

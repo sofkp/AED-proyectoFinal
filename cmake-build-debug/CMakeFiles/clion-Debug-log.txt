@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal -B D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug
+-- Configuring done (0.5s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug
