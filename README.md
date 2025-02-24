@@ -6,7 +6,7 @@ AUTORES:
 - Flavia Honores
 - Aaron Rojas
 
-El proyecto consiste en implementar un **Patricia Tree** en C++ de manera gráfica. Este estructura de datos permite:
+El proyecto consiste en implementar un **Red-Black Tree** en C++ de manera gráfica. Este estructura de datos permite:
 - **INSERTAR**
 - **ELIMINAR**
 - **BUSCAR**
