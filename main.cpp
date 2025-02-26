@@ -32,6 +32,21 @@ json obtenerArbol(const RBTree& tree) {
     jtree["root"] = raiz;
     return jtree;
 }
+json obtenerPasosBusqueda(const RBTree& tree, int n) {
+    json pasos;
+    Node* temp = tree.getRoot();
+    while (temp != NULL) {
+        json paso;
+        paso["current"] = temp->val;
+        paso["color"] = (temp->color == RED) ? "red" : "black";
+        pasos.push_back(paso);
+
+        if (n < temp->val) temp = temp->left;
+        else if (n == temp->val) break;
+        else temp = temp->right;
+    }
+    return pasos;
+}
 
 // Leer archivos
 string read_file(const string& path) {
@@ -104,6 +119,6 @@ int main() {
     });
 
     // Iniciar el servidor en localhost:8080
-    svr.listen("localhost", 8080);
+    svr.listen("localhost", 8082);
     return 0;
 }
