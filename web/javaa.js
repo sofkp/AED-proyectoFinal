@@ -1,6 +1,6 @@
 let highlightedNode = null; // Nodo resaltado
 
-// Obtener el árbol actual
+// Obtener el arbol actual
 async function fetchTree() {
     try {
         const response = await fetch('/tree');
@@ -40,7 +40,7 @@ async function insertNumber() {
 
     const response = await fetch(`/insert?number=${num}`, { method: 'POST' });
     const treeData = await response.json();
-    highlightedNode = null; // Reiniciar el nodo resaltado
+    highlightedNode = null;
     renderTree(treeData, highlightedNode);
 }
 
@@ -55,12 +55,12 @@ async function searchNumber() {
 
     if (result.found) {
         alert(`Número ${num} encontrado.`);
-        highlightedNode = result.node; // Resaltar el nodo encontrado
+        highlightedNode = result.node;
     } else {
         alert(`Número ${num} no encontrado.`);
-        highlightedNode = null; // No resaltar nada si no se encuentra
+        highlightedNode = null;
     }
-    renderTree(result.tree, highlightedNode); // Renderizar el árbol con el nodo resaltado
+    renderTree(result.tree, highlightedNode);
 }
 
 // Eliminar un número
@@ -75,7 +75,7 @@ async function deleteNumber() {
     const response = await fetch(`/delete?number=${num}`, { method: 'DELETE' });
     const treeData = await response.json();
 
-    highlightedNode = null; // Reiniciar el nodo resaltado
+    highlightedNode = null;
     renderTree(treeData, highlightedNode);
 }
 
@@ -107,8 +107,8 @@ function renderTree(data, highlightedNode = null) {
     svg.attr("height", newHeight);
 
     const treeLayout = d3.tree()
-        .size([width - 200, newHeight-100]) // Reducir la altura del árbol
-        .separation((a, b) => 0.5); // Reducir la separación entre nodos
+        .size([width - 200, newHeight-100])
+        .separation((a, b) => 0.5);
 
     treeLayout(root);
 
@@ -139,11 +139,11 @@ function renderTree(data, highlightedNode = null) {
         .attr("r", 20)
         .attr("fill", d => {
             if (highlightedNode !== null && d.data.key === highlightedNode) {
-                return d.data.color === "red" ? "red" : "black"; // Relleno del borde si está resaltado
+                return d.data.color === "red" ? "red" : "black";
             }
-            return d.data.color === "red" ? "#D07272DD" : "#a29e9e"; // Relleno rojo claro o gris
+            return d.data.color === "red" ? "#D07272DD" : "#a29e9e";
         })
-        .attr("stroke", d => d.data.color === "red" ? "red" : "black") // Borde rojo o negro
+        .attr("stroke", d => d.data.color === "red" ? "red" : "black")
         .attr("stroke-width", 2);
 
     // Dibujar texto
@@ -154,14 +154,14 @@ function renderTree(data, highlightedNode = null) {
 
     // Dibujar nodos "null" para hijos faltantes
     root.descendants().forEach(d => {
-        const nodeX = d.x; // Posición X del nodo actual
-        const nodeY = d.y; // Posición Y del nodo actual
+        const nodeX = d.x;
+        const nodeY = d.y;
 
         // Si no tiene hijo izquierdo, dibujar "null" a la izquierda
         if (!d.data.left) {
             g.append("rect")
-                .attr("x", nodeX - 25) // Ajustar posición (izquierda)
-                .attr("y", nodeY + 20)  // Ajustar posición (abajo)
+                .attr("x", nodeX - 25)
+                .attr("y", nodeY + 20)
                 .attr("width", 10)
                 .attr("height", 10)
                 .attr("fill", "gray")
@@ -170,8 +170,8 @@ function renderTree(data, highlightedNode = null) {
         // Si no tiene hijo derecho, dibujar "null" a la derecha
         if (!d.data.right) {
             g.append("rect")
-                .attr("x", nodeX + 25) // Ajustar posición (derecha)
-                .attr("y", nodeY + 20)  // Ajustar posición (abajo)
+                .attr("x", nodeX + 25)
+                .attr("y", nodeY + 20)
                 .attr("width", 10)
                 .attr("height", 10)
                 .attr("fill", "gray")
@@ -179,5 +179,4 @@ function renderTree(data, highlightedNode = null) {
     });
 }
 
-// Cargar el árbol al inicio
 fetchTree();
