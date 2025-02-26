@@ -54,6 +54,7 @@ async function searchNumber() {
     const result = await response.json();
 
     if (result.found) {
+        alert(`Número ${num} encontrado.`);
         highlightedNode = result.node; // Resaltar el nodo encontrado
     } else {
         alert(`Número ${num} no encontrado.`);
@@ -67,12 +68,13 @@ async function deleteNumber() {
     clearPrintArea();
     const num = document.getElementById("number-input").value;
     if (!num) {
-        alert(`Número ${num} no está en el árbol.`);
+        alert(`Ingrese el número`);
         return;
     }
 
     const response = await fetch(`/delete?number=${num}`, { method: 'DELETE' });
     const treeData = await response.json();
+
     highlightedNode = null; // Reiniciar el nodo resaltado
     renderTree(treeData, highlightedNode);
 }
@@ -91,7 +93,6 @@ function renderTree(data, highlightedNode = null) {
     }
 
     const width = svg.node().getBoundingClientRect().width;
-    const height = 500;
 
     const root = d3.hierarchy(data.root, d => {
         const children = [];
@@ -100,8 +101,13 @@ function renderTree(data, highlightedNode = null) {
         return children;
     });
 
+    const dep = root.height+1;
+    const nodeSpacingY = 100;
+    const newHeight = dep * nodeSpacingY + 100;
+    svg.attr("height", newHeight);
+
     const treeLayout = d3.tree()
-        .size([width - 200, height / 2]) // Reducir la altura del árbol
+        .size([width - 200, newHeight-100]) // Reducir la altura del árbol
         .separation((a, b) => 0.5); // Reducir la separación entre nodos
 
     treeLayout(root);
@@ -118,7 +124,7 @@ function renderTree(data, highlightedNode = null) {
         .attr("y1", d => d.source.y)
         .attr("x2", d => d.target.x)
         .attr("y2", d => d.target.y)
-        .attr("stroke", "#ccc");
+        .attr("stroke", "#655151");
 
     // Dibujar nodos
     const nodes = g.selectAll(".node")
@@ -154,37 +160,21 @@ function renderTree(data, highlightedNode = null) {
         // Si no tiene hijo izquierdo, dibujar "null" a la izquierda
         if (!d.data.left) {
             g.append("rect")
-                .attr("x", nodeX - 70) // Ajustar posición (izquierda)
-                .attr("y", nodeY + 40)  // Ajustar posición (abajo)
-                .attr("width", 50)
-                .attr("height", 20)
-                .attr("fill", "lightgray")
-                .attr("stroke", "gray");
-
-            g.append("text")
-                .attr("x", nodeX - 45) // Centrar texto en el rectángulo
-                .attr("y", nodeY + 55)
-                .attr("text-anchor", "middle")
-                .attr("fill", "black")
-                .text("null");
+                .attr("x", nodeX - 25) // Ajustar posición (izquierda)
+                .attr("y", nodeY + 20)  // Ajustar posición (abajo)
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr("fill", "gray")
         }
 
         // Si no tiene hijo derecho, dibujar "null" a la derecha
         if (!d.data.right) {
             g.append("rect")
-                .attr("x", nodeX + 20) // Ajustar posición (derecha)
-                .attr("y", nodeY + 40)  // Ajustar posición (abajo)
-                .attr("width", 50)
-                .attr("height", 20)
-                .attr("fill", "lightgray")
-                .attr("stroke", "gray");
-
-            g.append("text")
-                .attr("x", nodeX + 45) // Centrar texto en el rectángulo
-                .attr("y", nodeY + 55)
-                .attr("text-anchor", "middle")
-                .attr("fill", "black")
-                .text("null");
+                .attr("x", nodeX + 25) // Ajustar posición (derecha)
+                .attr("y", nodeY + 20)  // Ajustar posición (abajo)
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr("fill", "gray")
         }
     });
 }
