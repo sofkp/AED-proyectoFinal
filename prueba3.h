@@ -40,7 +40,7 @@ private:
 public:
     RBTree();
     ~RBTree();
-    Node* getRoot();
+    Node* getRoot() const;
     Node* search(int n);
     void insert(int n);
     void remove(int n);

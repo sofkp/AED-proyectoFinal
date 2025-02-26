@@ -263,7 +263,7 @@ void RBTree::deleteTree(Node *node) {
 RBTree::RBTree() { root = NULL; }
 RBTree::~RBTree() { deleteTree(root); }
 
-Node *RBTree::getRoot() {return root;}
+Node *RBTree::getRoot() const {return root;}
 
 
 Node* RBTree::search(int n) {

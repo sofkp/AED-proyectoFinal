@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <functional>
+using namespace std;
 
 using json = nlohmann::json;
 
@@ -12,10 +14,10 @@ json obtenerArbol(const RBTree& tree) {
     json jtree;
 
     function<void(const Node*, json&)> recorrer = [&](const Node* nodo, json& jnodo) {
-        if (!nodo || nodo == tree.getNullNode()) return; // Verificar si el nodo es nulo o un nodo centinela
+        if (!nodo) return;
 
-        jnodo["key"] = nodo->key;
-        jnodo["color"] = (nodo->color == RED) ? "red" : "black"; // Suponiendo que RBTree usa colores RED y BLACK
+        jnodo["key"] = nodo->val;
+        jnodo["color"] = (nodo->color == RED) ? "red" : "black";
 
         json left, right;
         recorrer(nodo->left, left);
@@ -32,36 +34,35 @@ json obtenerArbol(const RBTree& tree) {
 }
 
 // Leer archivos
-std::string read_file(const std::string& path) {
-    std::ifstream file(path);
-    if (!file.is_open()) throw std::runtime_error("No se pudo abrir el archivo " + path);
-    std::stringstream buff;
+string read_file(const string& path) {
+    ifstream file(path);
+    if (!file.is_open()) throw runtime_error("No se pudo abrir el archivo " + path);
+    stringstream buff;
     buff << file.rdbuf();
     return buff.str();
 }
 
 int main() {
-    RBTree tree; // Instancia del árbol rojo-negro
+    RBTree tree;
 
     httplib::Server svr;
 
-    // Servir la página HTML
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) {
         try {
-            std::string html = read_file("../web/web.html");
+            string html = read_file("../web/web.html");
             res.set_content(html, "text/html");
-        } catch (const std::exception& e) {
+        } catch (const exception& e) {
             res.status = 500;
-            res.set_content("Error al cargar la página: " + std::string(e.what()), "text/plain");
+            res.set_content("Error al cargar la página: " + string(e.what()), "text/plain");
         }
     });
 
     // Insertar número en el árbol
     svr.Post("/insert", [&](const httplib::Request& req, httplib::Response& res) {
         if (req.has_param("number")) {
-            int num = std::stoi(req.get_param_value("number"));
+            int num = stoi(req.get_param_value("number"));
             tree.insert(num);
-            res.set_content("Número insertado: " + std::to_string(num), "text/plain");
+            res.set_content("Número insertado: " + to_string(num), "text/plain");
         } else {
             res.status = 400;
             res.set_content("Parámetro 'number' faltante", "text/plain");
@@ -71,7 +72,7 @@ int main() {
     // Buscar número en el árbol
     svr.Get("/search", [&](const httplib::Request& req, httplib::Response& res) {
         if (req.has_param("number")) {
-            int num = std::stoi(req.get_param_value("number"));
+            int num = stoi(req.get_param_value("number"));
             bool encontrado = tree.search(num);
             json resultado = {{"number", num}, {"found", encontrado}};
             res.set_content(resultado.dump(), "application/json");
@@ -85,7 +86,9 @@ int main() {
     svr.Delete("/delete", [&](const httplib::Request& req, httplib::Response& res) {
         if (req.has_param("number")) {
             int num = std::stoi(req.get_param_value("number"));
-            bool eliminado = tree.remove(num);
+            Node* encontrado = tree.search(num);
+            bool eliminado = (encontrado != nullptr);
+            if (eliminado) tree.remove(num);
             json resultado = {{"number", num}, {"deleted", eliminado}};
             res.set_content(resultado.dump(), "application/json");
         } else {
