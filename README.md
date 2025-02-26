@@ -39,10 +39,8 @@ servidor web y customizarlo. Estas se pueden visualizar en http://localhost:8080
            ├── archivos. de json...
    ├── CMakeLists.txt
    ├── main.cpp
-   ├── patriciaNode.h
-   ├── patriciaNode.cpp
-   ├── patriciaTree.h
-   ├── patriciaTree.cpp
+   ├── RBTree.h
+   ├── RBTree.cpp
    ```
 
 2. Corre el archivo `main.cpp`
@@ -53,3 +51,17 @@ servidor web y customizarlo. Estas se pueden visualizar en http://localhost:8080
 ## **Visualizar**
 1. Una vez compilado,abre tu navegador web y accede a http://localhost:8080/
 ---
+
+
+## **Fuentes consultadas para implementación**
+- [Introducción a Red-Black Tree - GeeksforGeeks](https://www.geeksforgeeks.org/introduction-to-red-black-tree/)
+- [Red-Black Tree - Programiz](https://www.programiz.com/dsa/red-black-tree)
+- [Eliminación en Red-Black Tree - GeeksforGeeks](https://www.geeksforgeeks.org/deletion-in-red-black-tree/)
+- [redBlackTree](https://github.com/yassiommi/redblacktree/blob/main/RedBlackTree.h)
+- [Red-Black-Tree](https://github.com/anandarao/Red-Black-Tree)
+
+---
+### **Guía de visualización**
+Para comprender mejor la estructura y operaciones del **Red-Black Tree**, puedes utilizar la siguiente herramienta interactiva:  
+[Red-Black Tree Visualizer - USFCA](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+

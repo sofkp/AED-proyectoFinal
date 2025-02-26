@@ -1,4 +1,4 @@
-#include "prueba3.h"
+#include "RBTree.h"
 string read_file(const string& path) {
     ifstream file(path);
     if (!file.is_open()) throw runtime_error("No se pudo abrir el archivo " + path);

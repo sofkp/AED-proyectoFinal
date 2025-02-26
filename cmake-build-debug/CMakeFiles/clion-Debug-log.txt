@@ -1,4 +1,19 @@
-"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal -B D:\FLAV\DESK\utec\2025-0\aed\proy\AED-proyectoFinal\cmake-build-debug
--- Configuring done (0.5s)
--- Generating done (0.1s)
--- Build files have been written to: D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2023.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\sofia\Desktop\Documentos\2025\aed\AED-proyectoFinal -B C:\Users\sofia\Desktop\Documentos\2025\aed\AED-proyectoFinal\cmake-build-debug
+-- The C compiler identification is GNU 13.1.0
+-- The CXX compiler identification is GNU 13.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/JetBrains/CLion 2023.2/bin/mingw/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/JetBrains/CLion 2023.2/bin/mingw/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:9 (add_subdirectory):
+  add_subdirectory given source "external/cpp-httplib" which is not an
+  existing directory.
+
+
+-- Configuring incomplete, errors occurred!

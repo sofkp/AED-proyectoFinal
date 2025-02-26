@@ -114,7 +114,6 @@ function renderTree(data, highlightedNode = null) {
 
     const g = svg.append("g").attr("transform", "translate(50,50)");
 
-    // Dibujar enlaces
     g.selectAll(".link")
         .data(root.links())
         .enter()
@@ -126,7 +125,6 @@ function renderTree(data, highlightedNode = null) {
         .attr("y2", d => d.target.y)
         .attr("stroke", "#655151");
 
-    // Dibujar nodos
     const nodes = g.selectAll(".node")
         .data(root.descendants())
         .enter()
@@ -134,7 +132,6 @@ function renderTree(data, highlightedNode = null) {
         .attr("class", d => `node ${d.data.color}`)
         .attr("transform", d => `translate(${d.x},${d.y})`);
 
-    // Dibujar círculos
     nodes.append("circle")
         .attr("r", 20)
         .attr("fill", d => {
@@ -146,18 +143,15 @@ function renderTree(data, highlightedNode = null) {
         .attr("stroke", d => d.data.color === "red" ? "red" : "black")
         .attr("stroke-width", 2);
 
-    // Dibujar texto
     nodes.append("text")
         .attr("dy", 5)
         .attr("fill", "white")
         .text(d => d.data.key);
 
-    // Dibujar nodos "null" para hijos faltantes
     root.descendants().forEach(d => {
         const nodeX = d.x;
         const nodeY = d.y;
 
-        // Si no tiene hijo izquierdo, dibujar "null" a la izquierda
         if (!d.data.left) {
             g.append("rect")
                 .attr("x", nodeX - 25)
@@ -167,7 +161,6 @@ function renderTree(data, highlightedNode = null) {
                 .attr("fill", "gray")
         }
 
-        // Si no tiene hijo derecho, dibujar "null" a la derecha
         if (!d.data.right) {
             g.append("rect")
                 .attr("x", nodeX + 25)
