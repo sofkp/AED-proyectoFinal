@@ -2,8 +2,17 @@
 #define AED_PROYECTOFINAL_PRUEBA3_H
 
 #include <iostream>
+#include <string>
+#include <memory>
 #include <queue>
+#include <external/json/single_include/nlohmann/json.hpp>
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
+#include <functional>
+#include <httplib.h>
 using namespace std;
+using json = nlohmann::json;
 
 enum COLOR { RED, BLACK };
 
@@ -36,6 +45,7 @@ private:
     void fixDoubleBlack(Node *x);
     void deleteTree(Node* node);
     void printHelper(Node* root, string indent, bool last);
+    void registrarPasos(json& pasos, const string& accion, Node* nodo = nullptr);
 
 public:
     RBTree();
@@ -43,8 +53,17 @@ public:
     Node* getRoot() const;
     Node* search(int n);
     void insert(int n);
+    json insertWithSteps(int n);
     void remove(int n);
     void printTree();
+    json searchWithSteps(int n);
+    json removeWithSteps(int n);
+    json serializeTree();
+    json convertTreeToJson(Node* node);
+    void fixRedRedWithSteps(Node* x, json& pasos);
+    void fixDoubleBlackWithSteps(Node* x, json& pasos);
+    void deleteNodeWithSteps(Node* v, json&pasos);
+    json serializeNode(Node* node);
 };
 
 #endif //AED_PROYECTOFINAL_PRUEBA3_H

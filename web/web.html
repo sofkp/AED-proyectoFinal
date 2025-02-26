@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red-Black Tree</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="/javaa.js"></script>
     <style>
         .node circle {
             fill: #fff;
@@ -18,97 +19,31 @@
             fill: none;
             stroke: #ccc;
             stroke-width: 2px;
+            stroke-dasharray: 3; /* Hacer las líneas más cortas */
         }
         .node.red circle {
-            fill: red;
+            fill: rgba(208, 114, 114, 0.87); /* Relleno rojo claro */
+            stroke: #c00000;   /* Borde rojo */
         }
+
         .node.black circle {
-            fill: black;
-            stroke: white;
+            fill: #a29e9e; /* Relleno gris */
+            stroke: black; /* Borde negro */
         }
     </style>
 </head>
 <body>
-<h1>Red-Black Tree Visualizer</h1>
+<h1>Red-Black Tree</h1>
 <div>
-    <input id="number-input" type="number" placeholder="Enter number" />
+    <input id="number-input" type="number" placeholder="Ingresa un número" />
     <button onclick="insertNumber()">Insert</button>
     <button onclick="searchNumber()">Search</button>
     <button onclick="deleteNumber()">Delete</button>
+    <button onclick="clearTree()" style="background-color: #ff6666; color: white;">Borrar Árbol</button>
+    <button onclick="printTree()">Print</button>
 </div>
-<svg id="tree"></svg>
+<div id="print-area" style="margin-top: 20px; font-family: monospace;"></div>
 
-<script>
-    async function fetchTree() {
-        const response = await fetch('/tree');
-        const data = await response.json();
-        renderTree(data);
-    }
-
-    function renderTree(data) {
-        const svg = d3.select("#tree");
-        svg.selectAll("*").remove();
-
-        const width = svg.node().getBoundingClientRect().width;
-        const height = 500;
-
-        const root = d3.hierarchy(data.root);
-        const treeLayout = d3.tree().size([width - 200, height - 100]);
-
-        treeLayout(root);
-
-        const g = svg.append("g").attr("transform", "translate(50,50)");
-
-        // Draw links
-        g.selectAll(".link")
-            .data(root.links())
-            .enter()
-            .append("line")
-            .attr("class", "link")
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y)
-            .attr("stroke", "#ccc");
-
-        // Draw nodes
-        const nodes = g.selectAll(".node")
-            .data(root.descendants())
-            .enter()
-            .append("g")
-            .attr("class", "node")
-            .attr("transform", d => `translate(${d.x},${d.y})`);
-
-        nodes.append("circle")
-            .attr("r", 20)
-            .attr("fill", d => d.data.color === "red" ? "red" : "black");
-
-        nodes.append("text")
-            .attr("dy", 5)
-            .text(d => d.data.key);
-    }
-
-    async function insertNumber() {
-        const num = document.getElementById("number-input").value;
-        await fetch(`/insert?number=${num}`, { method: 'POST' });
-        fetchTree();
-    }
-
-    async function searchNumber() {
-        const num = document.getElementById("number-input").value;
-        const response = await fetch(`/search?number=${num}`);
-        const result = await response.json();
-        alert(result.found ? "Number found!" : "Number not found.");
-    }
-
-    async function deleteNumber() {
-        const num = document.getElementById("number-input").value;
-        await fetch(`/delete?number=${num}`, { method: 'DELETE' });
-        fetchTree();
-    }
-
-    // Fetch the initial tree on page load
-    fetchTree();
-</script>
+<svg id="tree" width="800" height="500"></svg>
 </body>
 </html>
