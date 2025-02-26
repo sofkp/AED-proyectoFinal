@@ -47,6 +47,4 @@ public:
     void printTree();
 };
 
-#endif // PRUEBA3_H
-
 #endif //AED_PROYECTOFINAL_PRUEBA3_H

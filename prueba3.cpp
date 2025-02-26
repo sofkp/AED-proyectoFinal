@@ -48,16 +48,10 @@ void Node::moveDown(Node* nParent) {
 
 // Verifica si el nodo tiene al menos un hijo rojo
 bool Node::hasRedChild() {
-    return (left != NULL && left->color == RED) ||
-           (right != NULL && right->color == RED);
+    return (left != NULL && left->color == RED) || (right != NULL && right->color == RED);
 }
 
-// Constructor del árbol rojo-negro
-RBTree::RBTree() { root = NULL; }
-
-// Destructor para liberar memoria del árbol
-RBTree::~RBTree() { deleteTree(root); }
-
+// INIcio RBTREE
 // Rotación a la izquierda
 void RBTree::leftRotate(Node *x) {
     Node *nParent = x->right;
@@ -96,7 +90,7 @@ void RBTree::swapValues(Node *u, Node *v) {
     v->val = temp;
 }
 
-// Corrige la violación rojo-rojo
+// Corrige rojo-rojo
 void RBTree::fixRedRed(Node *x) {
     if (x == root) {
         x->color = BLACK;
@@ -149,7 +143,8 @@ Node* RBTree::BSTreplace(Node *x) {
     if (x->left == NULL && x->right == NULL)
         return NULL;
 
-    return (x->left != NULL) ? x->left : x->right;
+    if (x->left != NULL) return x->left;
+    else return x->right;
 }
 
 // Elimina un nodo
@@ -257,6 +252,34 @@ void RBTree::fixDoubleBlack(Node *x) {
     }
 }
 
+void RBTree::deleteTree(Node *node) {
+    if (node != nullptr){
+        deleteTree(node->left);
+        deleteTree(node->right);
+        delete node;
+    }
+}
+
+RBTree::RBTree() { root = NULL; }
+RBTree::~RBTree() { deleteTree(root); }
+
+Node *RBTree::getRoot() {return root;}
+
+
+Node* RBTree::search(int n) {
+    Node *temp = root;
+    while (temp != NULL) {
+        if (n < temp->val) {
+            if (temp->left == NULL) break;
+            else temp = temp->left;
+        } else if (n == temp->val) break;
+        else {
+            if (temp->right == NULL) break;
+            else temp = temp->right;
+        }
+    }return temp;
+}
+
 // Inserta un nodo en el árbol
 void RBTree::insert(int n) {
     Node *newNode = new Node(n);
@@ -279,12 +302,39 @@ void RBTree::insert(int n) {
 
 // Elimina un nodo del árbol
 void RBTree::remove(int n) {
-    Node *v = search(n);
-    if (v->val != n) return;
+    if(root == NULL) return;
+
+    Node *v = search(n), *u;
+    if (v->val != n){
+        cout<<"No se encontro el nodo a eliminar"<<endl;
+        return;
+    }
     deleteNode(v);
 }
 
+void RBTree::printHelper(Node* root, string indent, bool last) {
+    if (root != NULL) {
+        cout << indent;
+        if (last) {
+            cout << "R----";
+            indent += "   ";
+        } else {
+            cout << "L----";
+            indent += "|  ";
+        }
+
+        string sColor = root->color == RED ? "RED" : "BLACK";
+        cout << root->val << "(" << sColor << ")" << endl;
+        printHelper(root->left, indent, false);
+        printHelper(root->right, indent, true);
+    }
+}
 // Imprime el árbol
 void RBTree::printTree() {
-    printHelper(root, "", true);
+    if (root== nullptr) cout<<"Arbol vacio"<<endl;
+    else{
+        cout<<endl<<"RED-BLACK TREE:"<<endl;
+        printHelper(root, "", true);
+    }
 }
+
