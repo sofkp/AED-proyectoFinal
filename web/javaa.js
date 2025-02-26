@@ -20,14 +20,21 @@ async function printTree() {
 
 // Función para borrar el árbol
 async function clearTree() {
+    clearPrintArea();
     const response = await fetch('/clear', { method: 'POST' });
     const treeData = await response.json();
     highlightedNode = null;
     renderTree(treeData, highlightedNode);
 }
 
+function clearPrintArea() {
+    const printArea = document.getElementById("print-area");
+    printArea.textContent = "";
+}
+
 // Insertar un número
 async function insertNumber() {
+    clearPrintArea();
     const num = document.getElementById("number-input").value;
     if (!num) return;
 
@@ -39,6 +46,7 @@ async function insertNumber() {
 
 // Buscar un número
 async function searchNumber() {
+    clearPrintArea();
     const num = document.getElementById("number-input").value;
     if (!num) return;
 
@@ -56,6 +64,7 @@ async function searchNumber() {
 
 // Eliminar un número
 async function deleteNumber() {
+    clearPrintArea();
     const num = document.getElementById("number-input").value;
     if (!num) {
         alert(`Número ${num} no está en el árbol.`);
