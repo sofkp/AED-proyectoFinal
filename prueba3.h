@@ -40,13 +40,12 @@ private:
 public:
     RBTree();
     ~RBTree();
-    Node* getRoot();
+    Node* getRoot() const;
     Node* search(int n);
+    Node* getNullNode() const;
     void insert(int n);
-    void remove(int n);
+    bool remove(int n);
     void printTree();
 };
-
-#endif // PRUEBA3_H
 
 #endif //AED_PROYECTOFINAL_PRUEBA3_H

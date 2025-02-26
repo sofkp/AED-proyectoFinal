@@ -1,11 +1,15 @@
 #include <httplib.h>
 #include "prueba3.h"
-#include <external/json/single_include/nlohmann/json.hpp>
+#include "external/json/single_include/nlohmann/json.hpp"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
 
 using json = nlohmann::json;
+
+Node* RBTree::getNullNode() const {
+    return nullptr;
+}
 
 // Representación JSON del árbol rojo-negro
 json obtenerArbol(const RBTree& tree) {
@@ -14,7 +18,7 @@ json obtenerArbol(const RBTree& tree) {
     function<void(const Node*, json&)> recorrer = [&](const Node* nodo, json& jnodo) {
         if (!nodo || nodo == tree.getNullNode()) return; // Verificar si el nodo es nulo o un nodo centinela
 
-        jnodo["key"] = nodo->key;
+        jnodo["key"] = nodo->val;
         jnodo["color"] = (nodo->color == RED) ? "red" : "black"; // Suponiendo que RBTree usa colores RED y BLACK
 
         json left, right;

@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/main.cpp" "CMakeFiles/c.dir/main.cpp.obj" "gcc" "CMakeFiles/c.dir/main.cpp.obj.d"
-  "D:/FLAV/DESK/utec/2025-0/aed/proy/AED-proyectoFinal/prueba3.cpp" "CMakeFiles/c.dir/prueba3.cpp.obj" "gcc" "CMakeFiles/c.dir/prueba3.cpp.obj.d"
+  "C:/Users/LENOVO/Desktop/AED-proyectoFinal/main.cpp" "CMakeFiles/c.dir/main.cpp.obj" "gcc" "CMakeFiles/c.dir/main.cpp.obj.d"
+  "C:/Users/LENOVO/Desktop/AED-proyectoFinal/prueba3.cpp" "CMakeFiles/c.dir/prueba3.cpp.obj" "gcc" "CMakeFiles/c.dir/prueba3.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
